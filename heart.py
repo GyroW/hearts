@@ -11,13 +11,14 @@ Yoffset = Yoffset_init
 Xstart = 50
 Ystart = 100
 
-Xintermediate = 75
-Yintermediate = 75
+#Xintermediate = 75
+#Yintermediate = 75
 
 Xend = 100
 Yend = 50
 
-count = 10000
+offset_increase = 80
+count = 100
 z = int(math.sqrt(count))
 print(z)
 with cairo.SVGSurface("hearts.svg", 150*z, 150*z) as surface:
@@ -28,6 +29,8 @@ with cairo.SVGSurface("hearts.svg", 150*z, 150*z) as surface:
 
             context.set_source_rgb(1, 0, 0)
             context.set_line_width(1)
+            Xintermediate = random.randint(70,80)
+            Yintermediate = random.randint(70,80)
 
             # heart part
             if True:
@@ -50,6 +53,7 @@ with cairo.SVGSurface("hearts.svg", 150*z, 150*z) as surface:
                 y1 = random.randint(25,75)
                 x2 = random.randint(50,75)
                 y2 = random.randint(100,125)
+
 
                 context.curve_to(Xoffset+x1, Yoffset+y1, Xoffset+x2, Yoffset+y2, Xoffset+Xintermediate, Yoffset+Yintermediate) #last pair is fixed
                 context.set_source_rgb(1, 0, 0)
@@ -92,9 +96,9 @@ with cairo.SVGSurface("hearts.svg", 150*z, 150*z) as surface:
                 context.set_source_rgb(1, 0, 0)
                 context.stroke()
 
-            Xoffset += 100
+            Xoffset += offset_increase
 
         Xoffset = Xoffset_init
-        Yoffset += 100
+        Yoffset += offset_increase
 
 
